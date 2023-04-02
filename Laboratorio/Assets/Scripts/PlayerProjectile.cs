@@ -7,10 +7,9 @@ public class PlayerProjectile : MonoBehaviour
     [SerializeField] private float _speed;
 
     [SerializeField] private float _damage;
-
+    
     void Start()
     {
-        
     }
 
     void Update()

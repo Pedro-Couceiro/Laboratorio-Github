@@ -22,6 +22,7 @@ public class Movement : MonoBehaviour
     [Header("GameObjects")]
     [SerializeField] private GameObject _groundTestLineStart;
     [SerializeField] private GameObject _groundTestLineEnd;
+    [SerializeField] private GameObject _firePoint;
     [SerializeField] private GameObject _bulletPrefab;
 
     private Animator _animator;
@@ -58,7 +59,8 @@ public class Movement : MonoBehaviour
 
         if(Input.GetKeyDown(KeyCode.J))
         {
-            Instantiate(_bulletPrefab, transform.position, Quaternion.identity);
+            GameObject bullet = Instantiate(_bulletPrefab, _firePoint.transform.position, _firePoint.transform.rotation);
+
         }
     }
 
