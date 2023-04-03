@@ -664,6 +664,7 @@ MonoBehaviour:
   _doubleJumpEnabled: 0
   _jumpPower: 4
   _runSpeed: 2
+  _jumpBufferTime: 0.1
   _groundTestLineStart: {fileID: 1336338022}
   _groundTestLineEnd: {fileID: 1504204937}
   _firePoint: {fileID: 1928714261}

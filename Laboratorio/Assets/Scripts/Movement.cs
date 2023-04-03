@@ -14,10 +14,15 @@ public class Movement : MonoBehaviour
     private bool _jumpEnded;
     private bool _canDoubleJump;
     [SerializeField] private bool _doubleJumpEnabled;
+    private bool _canJump;
 
     [Header("Valores")]
     [SerializeField] float _jumpPower;
     [SerializeField] float _runSpeed;
+    [SerializeField] private float _jumpBufferTime;
+    [SerializeField] private float _coyoteTime;
+    private float _jumpCommandTime;
+    private float _groundTime;
 
     [Header("GameObjects")]
     [SerializeField] private GameObject _groundTestLineStart;
@@ -53,7 +58,7 @@ public class Movement : MonoBehaviour
         if(Input.GetKeyUp(KeyCode.Space))
         {
             _jumpEnded = true;
-
+            _jumpCommandTime = Time.unscaledTime;
             _canDoubleJump = true;
         }
 
@@ -69,6 +74,19 @@ public class Movement : MonoBehaviour
         _isGrounded = Physics2D.Linecast(_groundTestLineEnd.transform.position, _groundTestLineStart.transform.position);
 
         string animation = "IdleAnim";
+
+        if(_isGrounded)
+        {
+            _groundTime = Time.unscaledTime;
+            _canJump = true;
+        }
+        else
+        {
+            if(Time.unscaledTime - _groundTime > _coyoteTime)
+            {
+                _canJump = false;
+            }
+        }
 
         if(_leftCommand)
         {
@@ -109,7 +127,7 @@ public class Movement : MonoBehaviour
             _jumpEnded = false;
         }
 
-        if (_jumpCommand && _isGrounded)
+        if (_jumpCommand && _canJump && Time.unscaledTime-_jumpCommandTime < _jumpBufferTime)
         {
             _rb.velocity = new Vector2(_rb.velocity.x, _jumpPower);
             _jumpCommand = false;
