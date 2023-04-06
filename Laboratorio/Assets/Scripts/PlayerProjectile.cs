@@ -17,10 +17,10 @@ public class PlayerProjectile : MonoBehaviour
         transform.Translate(_speed * Time.deltaTime,0,0);
     }
 
-    /*public void  Reverse()
+    public void  Reverse()
     {
-        _speed -= -1;
-    }*/
+        _speed = -3;
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {

@@ -64,8 +64,10 @@ public class Movement : MonoBehaviour
 
         if(Input.GetKeyDown(KeyCode.J))
         {
-            GameObject bullet = Instantiate(_bulletPrefab, _firePoint.transform.position, _firePoint.transform.rotation);
-
+            GameObject bullet = Instantiate(_bulletPrefab, _firePoint.transform.position, Quaternion.identity);
+             
+            if (transform.localScale.x < 0) 
+            { bullet.GetComponent<PlayerProjectile>().Reverse(); }
         }
     }
 
