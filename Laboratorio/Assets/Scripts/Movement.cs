@@ -15,6 +15,7 @@ public class Movement : MonoBehaviour
     private bool _canDoubleJump;
     [SerializeField] private bool _doubleJumpEnabled;
     private bool _canJump;
+    private bool _bombDeploy;
 
     [Header("Valores")]
     [SerializeField] float _jumpPower;
@@ -29,6 +30,7 @@ public class Movement : MonoBehaviour
     [SerializeField] private GameObject _groundTestLineEnd;
     [SerializeField] private GameObject _firePoint;
     [SerializeField] private GameObject _bulletPrefab;
+    [SerializeField] private GameObject _bombPrefab;
 
     private Animator _animator;
     
@@ -67,7 +69,14 @@ public class Movement : MonoBehaviour
             GameObject bullet = Instantiate(_bulletPrefab, _firePoint.transform.position, Quaternion.identity);
              
             if (transform.localScale.x < 0) 
-            { bullet.GetComponent<PlayerProjectile>().Reverse(); }
+            { 
+                bullet.GetComponent<PlayerProjectile>().Reverse();
+            }
+        }
+
+        if(Input.GetKey(KeyCode.K))
+        {  
+            Instantiate(_bombPrefab, transform.position, transform.rotation);
         }
     }
 
@@ -81,6 +90,7 @@ public class Movement : MonoBehaviour
         {
             _groundTime = Time.unscaledTime;
             _canJump = true;
+
         }
         else
         {
