@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerProjectile : MonoBehaviour
 {
     [SerializeField] private float _speed;
+    [SerializeField] private float _backspeed;
 
     [SerializeField] private float _damage;
     
@@ -19,7 +20,7 @@ public class PlayerProjectile : MonoBehaviour
 
     public void  Reverse()
     {
-        _speed = -3;
+        _speed = -_backspeed;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
