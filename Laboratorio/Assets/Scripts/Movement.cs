@@ -73,11 +73,6 @@ public class Movement : MonoBehaviour
                 bullet.GetComponent<PlayerProjectile>().Reverse();
             }
         }
-
-        if(Input.GetKey(KeyCode.K))
-        {  
-            Instantiate(_bombPrefab, transform.position, transform.rotation);
-        }
     }
 
     private void FixedUpdate()
@@ -100,7 +95,12 @@ public class Movement : MonoBehaviour
             }
         }
 
-        if(_leftCommand)
+        if (Input.GetKey(KeyCode.K))
+        {
+            GameObject bomb = Instantiate(_bombPrefab, transform.position, Quaternion.identity);
+        }
+
+        if (_leftCommand)
         {
             _rb.velocity = new Vector2(-_runSpeed, _rb.velocity.y);
             _leftCommand = false;
