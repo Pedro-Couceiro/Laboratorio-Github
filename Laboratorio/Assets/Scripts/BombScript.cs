@@ -16,7 +16,8 @@ public class BombScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        _countdown = Time.deltaTime;
+        _countdown += Time.deltaTime;
+
         if(_countdown >= countdownEnd)
         {
             Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, explosionRadius);
@@ -29,6 +30,8 @@ public class BombScript : MonoBehaviour
                     Destroy(collider.gameObject);
                 }
             }
+
+            Destroy(gameObject);
         }
     }
 }
