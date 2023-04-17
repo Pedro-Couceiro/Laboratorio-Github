@@ -5,16 +5,9 @@ using UnityEngine;
 public class MovingEnemy : MonoBehaviour
 {
     [SerializeField] private float Range;
-<<<<<<< HEAD
 
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-=======
     private GameObject player;
-    private float location;
+    private float location; 
 
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -31,16 +24,10 @@ public class MovingEnemy : MonoBehaviour
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
->>>>>>> main
     }
 
     // Update is called once per frame
     void Update()
     {
-<<<<<<< HEAD
-        
-=======
-       
->>>>>>> main
     }
 }
