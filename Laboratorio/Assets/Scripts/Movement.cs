@@ -73,6 +73,11 @@ public class Movement : MonoBehaviour
                 bullet.GetComponent<PlayerProjectile>().Reverse();
             }
         }
+
+        if (Input.GetKeyDown(KeyCode.K) && _isGrounded)
+        {
+            GameObject bomb = Instantiate(_bombPrefab, transform.position, Quaternion.identity);
+        }
     }
 
     private void FixedUpdate()
@@ -81,7 +86,7 @@ public class Movement : MonoBehaviour
 
         string animation = "IdleAnim";
 
-        if(_isGrounded)
+        if (_isGrounded)
         {
             _groundTime = Time.unscaledTime;
             _canJump = true;
@@ -89,15 +94,10 @@ public class Movement : MonoBehaviour
         }
         else
         {
-            if(Time.unscaledTime - _groundTime > _coyoteTime)
+            if (Time.unscaledTime - _groundTime > _coyoteTime)
             {
                 _canJump = false;
             }
-        }
-
-        if (Input.GetKey(KeyCode.K))
-        {
-            GameObject bomb = Instantiate(_bombPrefab, transform.position, Quaternion.identity);
         }
 
         if (_leftCommand)
